@@ -49,20 +49,62 @@
         </section>
 
         <section>
+            <style>
+                td, th {
+                border: 1px solid #dddddd;
+                text-align: center;
+                padding: 8px;
+                }
+
+                tr:nth-child(even) {
+                background-color: #dddddd;
+                }
+            </style>
             <h2>Conclusion</h2>
             <p>
-                The approach discussed leverages a systematic and well-structured methodology for sentiment analysis, combining data preprocessing, bag-of-words representation, and the application of the Naive Bayes classifier. The integration of machine learning and natural language processing techniques is used to transform unstructured customer feedback into numerical format datasets for meaningful analysis by the model. The choice of focusing on unstructured data, such as social media sentiments, highlights the significant volume and untapped potential of this data. 
+                The approach discussed leverages a systematic and well-structured methodology for sentiment analysis, combining data preprocessing, bag-of-words representation, and the application of the Naive Bayes classifier. The integration of machine learning and natural language processing techniques is used to transform unstructured customer feedback into numerical format datasets for meaningful analysis by the model. The choice of focusing on unstructured data, such as social media sentiments, highlights the significant volume and untapped potential of this data.
             </p>
             <p>
                 Three evaluation methods are used in determining the effectiveness of this approach based on the confusion matrix output, which are True Positive (TP), True Negative (TN), False Positive (FP), and False Negative (FN).
-                <ul>
-                    <li> Precision (P) = TP/(TP + FP) </li>
-                    <li> Recall (R) = TP(/TP + FN) </li>
-                    <li> Accuracy (A) = (TP + TN)/(TP + TN + FP + FN) </li>
-                </ul>
+            <ul>
+                <li> Precision (P) = TP/(TP + FP) </li>
+                <li> Recall (R) = TP(/TP + FN) </li>
+                <li> Accuracy (A) = (TP + TN)/(TP + TN + FP + FN) </li>
+            </ul>
             </p>
             <p>
-                After training the model with a dataset of 900 points and running it on a test set of 100 unseen data points, we are able to evaluate the results of the model using the confusion matrix to get the respected Precision, Recall, and Accuracy. 		
+                After training the model with a dataset of 900 points and running it on a test set of 100 unseen data points, we are able to evaluate the results of the model using the confusion matrix to get the respected Precision, Recall, and Accuracy.
+            </p>
+            <table style width="100%">
+                <tr>
+                    <th style width = "25%" bgcolor="black"> </th>
+                    <th style width = "25%" bgcolor="black"> </th>
+                    <th style width = "50%" colspan="3" bgcolor="black">
+                        <font color ="white">True Class </font>
+                    </th>
+                </tr>
+                <tr>
+                    <td style width = "25%" bgcolor="black"> </td>
+                    <td style width = "25%" bgcolor="black"> </td>
+                    <td style width = "25%"> Positive </td>
+                    <td style width = "25%"> Negative </td>
+                </tr>
+                <tr>
+                    <td style width = "25%" rowspan="2" bgcolor="black">
+                        <font color="white"> Predicted Class </font>
+                    </td>
+                    <td style width = "25%"> Positive</td>
+                    <td style width = "25%"> 67 </td>
+                    <td style width = "25%"> 11 </td>
+                </tr>
+                <tr>
+                    <td style width = "25%"> Negative </td>
+                    <td style width = "25%"> 38 </td>
+                    <td style width = "25%"> 64 </td>
+                </tr>
+            </table>
+            <p>
+                After evaluating the confusion matrix above, the value of this method’s precision, recall, and accuracy are 0.859, 0.638, and 0.728 respectively.
             </p>
         </section>
     </main>
