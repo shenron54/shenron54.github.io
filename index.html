@@ -36,19 +36,77 @@
 
         <section>
             <h2>Description</h2>
-            <p>In today's day and age, businesses are always competing with each other and trying to improve...</p>
-            <!-- Include content from your report's Description section -->
+            <p align="center"><i>"Your most unhappy customers are your greatest source of learning"</i> - Bill Gates</p>
+
+            <p>In the information age, businesses get a large amount of customer feedback from their websites, social media pages, business listings, and so on. However, most businesses don’t even know how to utilize this information to improve themselves. Even the ones that do know, mostly focus on structured feedback like customer reviews that have an explicit rating out of 5 which clearly indicates the general sentiment of the person that posted the review.<br>
+            <img src="structured_reviews.png" alt="Explicit Reviews">
+            </p>
+
+            <p>
+                The interesting part though, is that unstructured feedback, ie. feedback without any explicit ratings given by the author, are where most of the volume lies. Most of the world uses social media outlets such as Twitter to express their feelings about almost anything one could think of.<br>
+                <img src="unstructured_review.png" alt="Unstructured Feedback">
+            </p>
+
+            <p>
+                In the example above, one has to manually read each and every review to understand the sentiment of the person posting it which makes aggregating sentiments about a particular product even more difficult. This is where <b>sentiment analysis</b> using <b>Machine Learning</b> and <b>Natural Language</b> processing comes into the picture. 
+            </p>
+
+            <p>
+                <b>
+                But How?
+                </b> <br>
+                Assume a restaurant client at <i>XYZ Restaurant</i> provides historic data on customer reviews which have been previously labeled with positive/negative values. In addition to this, the client would also share a fresh customer review dump which needs classification as either negative or positive. To achieve this we make a binary review classification model using the historic customer review data to train our model for running predictions on the unseen data. The figure below shows an example of what the first few entries in the dataset would look like.<br>
+                <img src="XYZ_restaurant.png" alt="Reviews at XYZ Restaurant">
+            </p>
+
+            <p>
+                <b>
+                1. Preprocessing
+                </b> <br>
+                Data preprocessing is the first step that we carry out before we can proceed any further, and this is usually done by removing non-value adding characters from the reviews. The first review in the sample dataset has dots and commas which are special characters, and gives us no information about whether a review is good or bad. The same thing can be said about numbers in the reviews as well, so these can be dropped from the data.
+                <img src="pre-processing.png" alt="Data Preprocessing">
+            </p>
+
+            <p>
+                <b>
+                2. Remove Unnecessary Details
+                </b><br>
+                The next thing we have to do is to remove stop words which are shown highlighted in red in the figure above. These are generally non-value adding as they don’t help us in understanding the sentiment behind a statement in any way. Conversely, the words highlighted in green are words that need to be stemmed to their root words. In this instance, the word recommend is used in different forms but the sentiment that both of these forms convey is nearly similar. We convert these words back to their root word which is ‘recommend’; a process called stemming.
+                <img src="processesed_data.png" alt="Processed Data">
+            </p>
+
+            <p>
+                <b>
+                3. Conversion
+                </b> <br>
+                In order to facilitate comprehension by computers, the textual data in our reviews needs to be converted into numerical form. We employ a bag-of-words representation after the data has undergone the necessary cleaning processes. Considering the initial six reviews, the first three are selected in the figure below for a closer look at the bag-of-words concept. After the cleaning phase, our dataset takes the form illustrated above. When transitioning to a bag-of-words representation, the system identifies unique words, or tokens, within the review column and creates distinct columns for each token.
+                <br>The outcome is as follows:<br>
+                <img src="bow_representation.png" alt="Bag-of-Words Representation">
+            </p>
+
+            <p>
+                In this representation, a 1 is assigned if a token is present in the review, and a 0 if it is not. The term "bag-of-words" is aptly used because this approach discards information related to the order and sequence of words. During the model-building phase, certain tokens that infrequently appear in reviews are omitted, thereby reducing sparsity.
+            </p>
+
+            <p>
+                <b>
+                4. Classifying
+                </b><br>
+                The selected classifier for our sentiment analysis model is the Naive Bayes classifier. A brief understanding of its functioning is crucial. Utilizing the bag-of-words representation established earlier, let's delve into the logic used to create the Naive Bayes Classifier that we use for our sentiment analysis.
+                <br>
+                Consider a new customer review proclaiming "This place is wow," and the task is to predict its sentiment. Post data cleaning, this review simplifies to having two tokens: "place" and "wow". In the bag-of-words representation, the review is depicted as follows, with 1s denoting the presence of the tokens "WOW" and "PLACE" and zeros for other tokens in the model dictionary: <br>
+                <img src="naive_bayes.png" alt="Naive Bayes Classifier">
+            </p>
+
+            <p>
+                The Naive Bayes Classifier relies on conditional probabilities. Examining historical reviews, if the token "WOW" is present, the sentiment is consistently positive based on the available training data. Conversely, if the token "LOVE" is absent, the sentiment is consistently negative. A similar analysis is performed for the token "PLACE." However, for the token "CRUST," the sentiment is both positive and negative when the token is absent, resulting in a 50:50 probability. More data is needed to determine whether "CRUST" as a token contributes to positive or negative sentiment.
+                <br>
+                This process is repeated for all tokens, assessing respective conditional probabilities. With the limited information available, it becomes evident that three tokens indicate positive sentiment, while only one suggests negative sentiment. Consequently, the review is classified as positive by the Naive Bayes Classifier.
+            </p>
         </section>
 
         <section>
             <h2>Evaluation</h2>
-            <p>
-
-            </p>
-            <!-- Include content from your report's Evaluation section -->
-        </section>
-
-        <section>
             <style>
                 td, th {
                 border: 1px solid #dddddd;
@@ -60,7 +118,6 @@
                 background-color: #dddddd;
                 }
             </style>
-            <h2>Conclusion</h2>
             <p>
                 The approach discussed leverages a systematic and well-structured methodology for sentiment analysis, combining data preprocessing, bag-of-words representation, and the application of the Naive Bayes classifier. The integration of machine learning and natural language processing techniques is used to transform unstructured customer feedback into numerical format datasets for meaningful analysis by the model. The choice of focusing on unstructured data, such as social media sentiments, highlights the significant volume and untapped potential of this data.
             </p>
@@ -105,6 +162,13 @@
             </table>
             <p>
                 After evaluating the confusion matrix above, the value of this method’s precision, recall, and accuracy are 0.859, 0.638, and 0.728 respectively.
+            </p>
+        </section>
+
+        <section>
+            <h2> Conclusion </h2>
+            <p>
+                This paper tested a bag-of-words approach in sentiment analysis, specifically in the domain of unannotated customer reviews. This method requires the dataset to be preprocessed by removing stop words which have no significance towards the meaning of the sentence and stemming words back into their root words. After removing these unnecessary details, the textual data is then converted into numerical form in a bag-of-words representation, where a 1 is assigned if a token (word) is present in the review and a 0 if not. The model then uses a Naive Bayes Classifier to predict the sentiment of a sentence given its bag-of-words representation. This model is trained on a visible dataset of 900 points and a test set of 100 data points. Using the metrics of Precision, Recall, and Accuracy, the model obtained results of 0.859, 0.638, and 0.728 respectively.
             </p>
         </section>
     </main>
