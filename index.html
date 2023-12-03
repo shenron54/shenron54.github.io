@@ -5,6 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GE2340 - Course Project - 2023/2024 Semester A</title>
     <!-- You can link your CSS file here if you have any -->
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          margin: 20px;
+        }
+  
+        button {
+          padding: 10px;
+          font-size: 16px;
+          cursor: pointer;
+        }
+  
+        #output {
+          margin-top: 20px;
+        }
+      </style>
   </head>
 
   <body>
@@ -69,6 +85,55 @@
           methodology for sentiment analysis...
         </p>
         <!-- Include content from your report's Evaluation section -->
+      </section>
+
+      <section>
+        <h2>Data Pre-processing example</h2>
+        <p id="data1">Wow... Loved this place</p>
+        <p id="data2">Crust is not good</p>
+        <p id="data3">Not tasty and the texture was just nasty</p>
+
+        <button onclick="step1()">Step 1: Remove Non-Value Adding Characters</button>
+        <button onclick="step2()">Step 2: Remove Stop Words and Do Stemming</button>
+
+        <div id="output"></div>
+
+        <script>
+          var data1, data2, data3;
+
+          function step1() {
+            // Get the data points
+            data1 = document.getElementById("data1").textContent;
+            data2 = document.getElementById("data2").textContent;
+            data3 = document.getElementById("data3").textContent;
+
+            // Step 1: Remove non-value adding characters and convert to lowercase
+            data1 = data1.replace(/[^\w\s]/gi, '').toLowerCase();
+            data2 = data2.replace(/[^\w\s]/gi, '').toLowerCase();
+            data3 = data3.replace(/[^\w\s]/gi, '').toLowerCase();
+
+            // Display the preprocessed data after step 1
+            var outputDiv = document.getElementById("output");
+            outputDiv.innerHTML = `<p>Step 1 Result:</p><p>${data1}</p><p>${data2}</p><p>${data3}</p>`;
+          }
+
+          function step2() {
+            if (!data1 || !data2 || !data3) {
+              alert("Please complete Step 1 first.");
+              return;
+            }
+
+            // Step 2: Remove stop words and do stemming
+            var stopWords = ["is", "not", "and", "the", "was", "just"];
+            data1 = data1.split(' ').filter(word => !stopWords.includes(word)).join(' ');
+            data2 = data2.split(' ').filter(word => !stopWords.includes(word)).join(' ');
+            data3 = data3.split(' ').filter(word => !stopWords.includes(word)).join(' ');
+
+            // Display the preprocessed data after step 2
+            var outputDiv = document.getElementById("output");
+            outputDiv.innerHTML += `<p>Step 2 Result:</p><p>${data1}</p><p>${data2}</p><p>${data3}</p>`;
+          }
+        </script>
       </section>
 
       <section>
