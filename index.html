@@ -32,6 +32,26 @@
         margin: 0 auto; /* Center-align images */
         max-width: 100%; /* Make sure images don't exceed the container width */
       }
+
+      /* Style for the references section */
+      #references {
+        text-align: left;
+        margin-top: 20px;
+      }
+
+      #references h2 {
+        margin-bottom: 10px;
+      }
+
+      #references ol {
+        list-style-type: decimal;
+        margin-left: 20px;
+      }
+
+      #references li {
+        margin-bottom: 8px;
+      }
+    </style>
     </style>
   </head>
 
@@ -279,6 +299,28 @@
             <p>
                 This paper tested a bag-of-words approach in sentiment analysis, specifically in the domain of unannotated customer reviews. This method requires the dataset to be preprocessed by removing stop words which have no significance towards the meaning of the sentence and stemming words back into their root words. After removing these unnecessary details, the textual data is then converted into numerical form in a bag-of-words representation, where a 1 is assigned if a token (word) is present in the review and a 0 if not. The model then uses a Naive Bayes Classifier to predict the sentiment of a sentence given its bag-of-words representation. This model is trained on a visible dataset of 900 points and a test set of 100 data points. Using the metrics of Precision, Recall, and Accuracy, the model obtained results of 0.859, 0.638, and 0.728 respectively.
             </p>
+        </section>
+
+        <!-- References Section -->
+        <section id="references">
+          <h2>References</h2>
+          <ol>
+            <li>
+              M. Taboada, J. Brooke, M. Tofiloski, K. Voll and M. Stede, "Lexicon-Based Methods for Sentiment Analysis," Computational Linguistics, vol. 37, no. 2, pp. 267-307, June 2011.
+            </li>
+            <li>
+              B. Yılmaz, "AIMultiple," AIMultiple, 8 September 2023. [Online]. Available: <a href="https://research.aimultiple.com/sentiment-analysis-methods/" target="_blank">https://research.aimultiple.com/sentiment-analysis-methods/</a>. [Accessed 12 November 2023].
+            </li>
+            <li>
+              N. Barla, "neptune.ai," MLOps Blog, 29 August 2023. [Online]. Available: <a href="https://neptune.ai/blog/representation-learning-with-autoencoder" target="_blank">https://neptune.ai/blog/representation-learning-with-autoencoder</a>. [Accessed 16 November 2023].
+            </li>
+            <li>
+              N. Zainuddin, A. Selamat and R. Ibrahim, "Hybrid sentiment classification on twitter aspect-based sentiment analysis," Appl Intell, vol. 48, p. 1218–1232, 13 December 2017.
+            </li>
+            <li>
+              S. AI, "Medium," 12 August 2022. [Online]. Available: <a href="https://medium.com/@skillcate/sentiment-analysis-project-with-traditional-ml-nlp-349185bf98dd" target="_blank">https://medium.com/@skillcate/sentiment-analysis-project-with-traditional-ml-nlp-349185bf98dd</a>. [Accessed 20 November 2023].
+            </li>
+          </ol>
         </section>
     </main>
 
