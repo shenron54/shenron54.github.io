@@ -6,21 +6,33 @@
     <title>GE2340 - Course Project - 2023/2024 Semester A</title>
     <!-- You can link your CSS file here if you have any -->
     <style>
-        body {
-          font-family: Arial, sans-serif;
-          margin: 20px;
-        }
-  
-        button {
-          padding: 10px;
-          font-size: 16px;
-          cursor: pointer;
-        }
-  
-        #output {
-          margin-top: 20px;
-        }
-      </style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        text-align: center; /* Center-align the entire content */
+      }
+
+      button {
+        padding: 10px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      #output {
+        margin-top: 20px;
+        text-align: center; /* Align the output text to the left */
+      }
+
+      section {
+        text-align: center; /* Justify-align the text within each section */
+      }
+
+      img {
+        display: block;
+        margin: 0 auto; /* Center-align images */
+        max-width: 100%; /* Make sure images don't exceed the container width */
+      }
+    </style>
   </head>
 
   <body>
@@ -40,7 +52,7 @@
 
     <main>
         <section align="justify">
-            <h2>Introduction</h2>
+            <h1>Introduction</h1>
             <p>
                 The majority of aspects such as business, politics, medication and others, requires data to be examined to bring various advantages. The data that are collected often to be raw data that still contains complex and high-dimensional information. This kind of data may not be suitable for analysis or even modeling. It needs to be dimensionally reduced and focus more on the informative features. By that, a sub domain of artificial intelligence is then made.
             </p>
@@ -56,7 +68,7 @@
         </section>
 
         <section align="justify">
-            <h2>Related Works</h2>
+            <h1>Related Works</h1>
             <p>
                 Sentiment analysis is a process that automatically detects emotions and opinions by classifying a given digital text whether it's positive, negative or neutral. The integration of two AI subfields such as natural language processing (NLP) and machine learning are combined to extract insights from customer feedback. NLP itself transforms human language to machine language and has two different techniques such as syntactic techniques to understand the structure of a text and semantic techniques to identify the meaning of the text. It then passes the information to machine learning where they find patterns and predictions.
             </p>
@@ -75,7 +87,7 @@
         </section>
 
         <section align="justify">
-            <h2>Description</h2>
+            <h1>Description</h1>
             <p align="center"><i>"Your most unhappy customers are your greatest source of learning"</i> - Bill Gates</p>
 
             <p>In the information age, businesses get a large amount of customer feedback from their websites, social media pages, business listings, and so on. However, most businesses don’t even know how to utilize this information to improve themselves. Even the ones that do know, mostly focus on structured feedback like customer reviews that have an explicit rating out of 5 which clearly indicates the general sentiment of the person that posted the review.<br>
@@ -146,7 +158,7 @@
         </section>
 
         <section>
-            <h2>Evaluation</h2>
+            <h1>Evaluation</h1>
             <style>
                 td, th {
                 border: 1px solid #dddddd;
@@ -206,18 +218,18 @@
         </section>
 
         <section>
-          <h2>Data Pre-processing example</h2>
-          <p id="data1">Wow... Loved this place</p>
-          <p id="data2">Crust is not good</p>
-          <p id="data3">Not tasty and the texture was just nasty</p>
-  
+          <h1>Data Pre-processing example</h1>
+          <h3>Sample Datapoints:</h3> 
+            <li id="data1">Wow... Loved this place</li>
+            <li id="data2">Crust is not good</li>
+            <li id="data3">Not tasty and the texture was just nasty</li>            
           <button onclick="step1()">Step 1: Remove Non-Value Adding Characters</button>
-          <button onclick="step2()">Step 2: Remove Stop Words and Do Stemming</button>
   
           <div id="output"></div>
   
           <script>
             var data1, data2, data3;
+            var step2Clicked = false;
   
             function step1() {
               // Get the data points
@@ -232,15 +244,18 @@
   
               // Display the preprocessed data after step 1
               var outputDiv = document.getElementById("output");
-              outputDiv.innerHTML = `<p>Step 1 Result:</p><p>${data1}</p><p>${data2}</p><p>${data3}</p>`;
+              outputDiv.innerHTML = `<h3>Step 1 Result:</h3><li>${data1}</li><li>${data2}</li><li>${data3}</li>`;
+  
+              // Add Step 2 button after Step 1 result
+              outputDiv.innerHTML += '<button onclick="step2()" id="step2Button">Step 2: Remove Stop Words and Do Stemming</button>';
             }
   
             function step2() {
-              if (!data1 || !data2 || !data3) {
-                alert("Please complete Step 1 first.");
-                return;
-              }
-  
+              if ((!data1 || !data2 || !data3 ) && step2Clicked) {
+              alert("Please complete Step 1 first or Step 2 has already been performed.");
+              return;
+            }
+              step2Clicked = true
               // Step 2: Remove stop words and do stemming
               var stopWords = ["is", "not", "and", "the", "was", "just"];
               data1 = data1.split(' ').filter(word => !stopWords.includes(word)).join(' ');
@@ -249,14 +264,18 @@
   
               // Display the preprocessed data after step 2
               var outputDiv = document.getElementById("output");
-              outputDiv.innerHTML += `<p>Step 2 Result:</p><p>${data1}</p><p>${data2}</p><p>${data3}</p>`;
+              outputDiv.innerHTML += `<h3>Step 2 Result:</h3><li>${data1}</li><li>${data2}</li><li>${data3}</li>`;
+
+              // Disable the Step 2 button
+              document.getElementById("step2Button").disabled = true;
             }
           </script>
         </section>
   
+  
 
         <section>
-            <h2> Conclusion </h2>
+            <h1> Conclusion </h1>
             <p>
                 This paper tested a bag-of-words approach in sentiment analysis, specifically in the domain of unannotated customer reviews. This method requires the dataset to be preprocessed by removing stop words which have no significance towards the meaning of the sentence and stemming words back into their root words. After removing these unnecessary details, the textual data is then converted into numerical form in a bag-of-words representation, where a 1 is assigned if a token (word) is present in the review and a 0 if not. The model then uses a Naive Bayes Classifier to predict the sentiment of a sentence given its bag-of-words representation. This model is trained on a visible dataset of 900 points and a test set of 100 data points. Using the metrics of Precision, Recall, and Accuracy, the model obtained results of 0.859, 0.638, and 0.728 respectively.
             </p>
@@ -264,7 +283,7 @@
     </main>
 
     <footer>
-      <p>&copy; 2023 Your Group Name</p>
+      <p>&copy; Albertus Juan Aldo S ~ 57899810 | Aryaman Navale ~ 56429561 | Vincent Collin Yennoto ~ 57887312</p>
     </footer>
 
     <!-- You can link your JavaScript file here if you have any -->
